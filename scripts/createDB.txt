@@ -1,0 +1,156 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cutter`.`user` ;
+
+CREATE TABLE IF NOT EXISTS `cutter`.`user` (
+  `iduser` INT NOT NULL AUTO_INCREMENT,
+  `fname` VARCHAR(45) NULL,
+  `lname` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `address1` VARCHAR(45) NULL,
+  `address2` VARCHAR(45) NULL,
+  `town` VARCHAR(45) NULL,
+  `pcode` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
+  PRIMARY KEY (`iduser`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cutter`.`project`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cutter`.`project` ;
+
+CREATE TABLE IF NOT EXISTS `cutter`.`project` (
+  `idproject` INT NOT NULL,
+  `proj_name` VARCHAR(45) NULL,
+  `proj_date` VARCHAR(45) NULL,
+  `user_iduser` INT NOT NULL,
+  PRIMARY KEY (`idproject`),
+  INDEX `fk_project_user_idx` (`user_iduser` ASC),
+  CONSTRAINT `fk_project_user`
+    FOREIGN KEY (`user_iduser`)
+    REFERENCES `cutter`.`user` (`iduser`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cutter`.`carcass`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cutter`.`carcass` ;
+
+CREATE TABLE IF NOT EXISTS `cutter`.`carcass` (
+  `idcarcass` INT NOT NULL,
+  `height` VARCHAR(45) NULL,
+  `width` VARCHAR(45) NULL,
+  `depth` VARCHAR(45) NULL,
+  `colour` VARCHAR(45) NULL,
+  `project_idproject` INT NOT NULL,
+  PRIMARY KEY (`idcarcass`),
+  INDEX `fk_carcass_project1_idx` (`project_idproject` ASC),
+  CONSTRAINT `fk_carcass_project1`
+    FOREIGN KEY (`project_idproject`)
+    REFERENCES `cutter`.`project` (`idproject`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cutter`.`side`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cutter`.`side` ;
+
+CREATE TABLE IF NOT EXISTS `cutter`.`side` (
+  `idside` INT NOT NULL,
+  `height` VARCHAR(45) NULL,
+  `width` VARCHAR(45) NULL,
+  `thickness` VARCHAR(45) NULL,
+  `carcass_idcarcass` INT NOT NULL,
+  PRIMARY KEY (`idside`),
+  INDEX `fk_side_carcass1_idx` (`carcass_idcarcass` ASC),
+  CONSTRAINT `fk_side_carcass1`
+    FOREIGN KEY (`carcass_idcarcass`)
+    REFERENCES `cutter`.`carcass` (`idcarcass`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cutter`.`top_bot`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cutter`.`top_bot` ;
+
+CREATE TABLE IF NOT EXISTS `cutter`.`top_bot` (
+  `idtop_bot` INT NOT NULL,
+  `height` VARCHAR(45) NULL,
+  `width` VARCHAR(45) NULL,
+  `thickness` VARCHAR(45) NULL,
+  `carcass_idcarcass` INT NOT NULL,
+  PRIMARY KEY (`idtop_bot`),
+  INDEX `fk_side_carcass1_idx` (`carcass_idcarcass` ASC),
+  CONSTRAINT `fk_side_carcass10`
+    FOREIGN KEY (`carcass_idcarcass`)
+    REFERENCES `cutter`.`carcass` (`idcarcass`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cutter`.`backboard`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cutter`.`backboard` ;
+
+CREATE TABLE IF NOT EXISTS `cutter`.`backboard` (
+  `idbackboard` INT NOT NULL,
+  `height` VARCHAR(45) NULL,
+  `width` VARCHAR(45) NULL,
+  `thickness` VARCHAR(45) NULL,
+  `carcass_idcarcass` INT NOT NULL,
+  PRIMARY KEY (`idbackboard`),
+  INDEX `fk_side_carcass1_idx` (`carcass_idcarcass` ASC),
+  CONSTRAINT `fk_side_carcass11`
+    FOREIGN KEY (`carcass_idcarcass`)
+    REFERENCES `cutter`.`carcass` (`idcarcass`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cutter`.`shelf`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cutter`.`shelf` ;
+
+CREATE TABLE IF NOT EXISTS `cutter`.`shelf` (
+  `idshelf` INT NOT NULL,
+  `height` VARCHAR(45) NULL,
+  `width` VARCHAR(45) NULL,
+  `thickness` VARCHAR(45) NULL,
+  `carcass_idcarcass` INT NOT NULL,
+  PRIMARY KEY (`idshelf`),
+  INDEX `fk_side_carcass1_idx` (`carcass_idcarcass` ASC),
+  CONSTRAINT `fk_side_carcass12`
+    FOREIGN KEY (`carcass_idcarcass`)
+    REFERENCES `cutter`.`carcass` (`idcarcass`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
