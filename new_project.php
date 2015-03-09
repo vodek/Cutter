@@ -31,7 +31,7 @@ echo
 </form>	
 ";	
 echo '<div id="carcass_list_title" name="carcass_list_title" class="content"></div>';		
-echo '<form action ="see_project.php" method="post" > <div id="carcass_list" name="carcass_list" class="content">     </div> </table> </form>';	
+echo '<form action ="see_project.php" method="post" > <div id="carcass_list" name="carcass_list" class="content">      </form></div> ';	
 	
 	
 	

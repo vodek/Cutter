@@ -2,7 +2,10 @@ body
 {
 margin:0px;
 font-family: "Sans MS",sans-serif;
+background-image: url("../images/wallpaper.jpg"); 
 background-color:#CCCCCC;
+
+
 }
 ol
 {
@@ -53,22 +56,33 @@ body>div
 {
 display:flex;
 flex-flow: row wrap;
-margin-left:3%;
-margin-right:3%;
+margin-left:4%;
+margin-right:4%;
 
 }
+ body>div>header,footer
+{
+opacity: .7;
+background: -moz-linear-gradient(bottom right,	#E0D6CC, #C2E0FF);
+
+} 
+
+
+
 body>div>header,menu,content,footer
 {
 background-color:#FFFFFF;
-margin:5px;
+opacity: .9;
+
+margin:10px;
 padding:20px;
 color:#6e6e6e;
 box-shadow:0.2em 0.2em 0.2em 0.2em;
 
 }
 .button
-{
-background-color:white;
+{   
+background-color:black;
 margin-left:100px;
 margin-right:100px;
 padding:20px;
@@ -87,7 +101,9 @@ text-align:center;
 }
 body>div>header>img
 {
-height:120%;
+height:100%;
+ opacity: 1;
+ 
 }
 body>div>menu
 {
