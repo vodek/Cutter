@@ -8,5 +8,4 @@
 
 <script language="javascript" type="text/javascript" src="scripts/script.js"></script>
 
-
 </head>

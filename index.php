@@ -9,35 +9,44 @@
 <div id="content" class="content" >
 <?php
 //all code goes here
+
+//check if seesion email is set (user logged in)
 if (isset ($_SESSION['email'])){
-	$email = $_SESSION['email'];	
+	//declare local variable to match session
+	$email = $_SESSION['email'];
+	//query logged user details from DB
 	$result = mysql_query("SELECT fname, lname, iduser FROM user WHERE email = '$email' ");
-	$result1 = mysql_query("SELECT COUNT(idproject) FROM project WHERE user_iduser = ");
+	//number of rows as query result
 	$count = mysql_num_rows($result);
+	//fetching rows from DB table matching query
 	$row = mysql_fetch_row($result);
 	
-	
+	//greeting user with first and second name from DB
 	echo"Welcome ".$row[0]." ".$row[1]."</br>";
+	//query number of saved projects matching logged user ID
 	$result1 = mysql_query("SELECT COUNT(idproject) FROM project WHERE user_iduser = '$row[2]'");
 	$count1 = mysql_num_rows($result1);
 	$row1 = mysql_fetch_row($result1);
 	$gramatyka = "";
 	$iduser = $row[2];
+	//little bit of grama ;) (to use string "project" as singular or plural noun when appropriate)
 	if($row1[0]==1){
 		$gramatyka = "project";
 	}
 	else{$gramatyka = "projects";
 	}
+	//output to user telling about number of saved projects
 	echo "you have ".$row1[0]. " saved ".$gramatyka." in our database ";
-	
+	//if number of saved projects is grater than 0
 	if ($row1[0]>0){
-		
+		//query projects details matching user id
 		$query = mysql_query("SELECT idproject,proj_name, proj_date,COUNT(carcass.idcarcass) 
 		FROM project
 		LEFT JOIN carcass ON carcass.project_idproject = project.idproject
 		WHERE project.user_iduser = $iduser
 		GROUP BY carcass.project_idproject") or die(mysql_error());
 		
+		//display table with brief details to user 
 		echo "<table border='1' class='table'>";
 		echo "</br></br><tr>";
 		
@@ -60,18 +69,12 @@ if (isset ($_SESSION['email'])){
 				echo "</tr>";
 			}
 		
-		echo "</table>";
-	
-		
+		echo "</table>";	
 		
 	}
-	
-	
-	
-	
-	
+		
 }
-
+//if there is no session email(user not logged in), display general info
 else{
 
 echo"
@@ -90,14 +93,6 @@ Phasellus aliquet tellus nec auctor aliquam. Etiam et ullamcorper urna, nec tris
 	
 	
 }
-
-
-
-
-
-
-
-
 
 
 ?>
