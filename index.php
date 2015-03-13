@@ -19,15 +19,56 @@ if (isset ($_SESSION['email'])){
 	
 	echo"Welcome ".$row[0]." ".$row[1]."</br>";
 	$result1 = mysql_query("SELECT COUNT(idproject) FROM project WHERE user_iduser = '$row[2]'");
-	$count = mysql_num_rows($result1);
-	$row = mysql_fetch_row($result1);
+	$count1 = mysql_num_rows($result1);
+	$row1 = mysql_fetch_row($result1);
 	$gramatyka = "";
-	if($row[0]==1){
+	$iduser = $row[2];
+	if($row1[0]==1){
 		$gramatyka = "project";
 	}
 	else{$gramatyka = "projects";
 	}
-	echo "you have ".$row[0]. " saved ".$gramatyka." in our database ";
+	echo "you have ".$row1[0]. " saved ".$gramatyka." in our database ";
+	
+	if ($row1[0]>0){
+		
+		$query = mysql_query("SELECT idproject,proj_name, proj_date,COUNT(carcass.idcarcass) 
+		FROM project
+		LEFT JOIN carcass ON carcass.project_idproject = project.idproject
+		WHERE project.user_iduser = $iduser
+		GROUP BY carcass.project_idproject") or die(mysql_error());
+		
+		echo "<table border='1' class='table'>";
+		echo "</br></br><tr>";
+		
+				echo "<th>ID</th>";
+				echo "<th>Project name</th>";
+				echo "<th>Date created</th>";
+				echo "<th>Qty of carcass</th>";
+				echo "</tr>";
+
+		while($row2 = mysql_fetch_row($query))
+		{
+				echo "<tr>";
+
+				echo "<td>$row2[0]</td>";
+				echo "<td>$row2[1]</td>";
+				echo "<td>$row2[2]</td>";
+				echo "<td>$row2[3]</td>";
+				
+
+				echo "</tr>";
+			}
+		
+		echo "</table>";
+	
+		
+		
+	}
+	
+	
+	
+	
 	
 }
 

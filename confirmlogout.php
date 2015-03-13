@@ -12,7 +12,9 @@
 
 if(isset($_SESSION['email'])){
 	
-	unset ($_SESSION['email']);
+	session_unset();
+
+		
 	
 	echo "<a>You have been logged out successfully</a>";
 	
