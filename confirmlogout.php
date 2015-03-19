@@ -16,17 +16,15 @@ if(isset($_SESSION['email'])){
 
 		
 	
-	echo "<a>You have been logged out successfully</a>";
-	
-	header("Refresh:2; url=index.php");
-	echo'<a>You will be shortly redirected to your hompage</a></br>';
-	/* echo'<a>If does not happen: </a>';
-	echo'<a href ="index.php">Click here</a>';  */
-}
 	
 	
+	header("location:index.php");
+
+}	
 	
-	else{ echo"<a>You can't be logged out, becouse you haven't been logged in ;)</a>";
+	
+	else{ 
+	header("location:index.php");
 
 
 

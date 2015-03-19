@@ -35,9 +35,9 @@ return false;
 }
 
 function conf(){
-	var proj_name = document.getElementById("proj_name").value;
+	
 
-  if(confirm("Do you really want to delete project "+proj_name+"?"))
+  if(confirm("Do you really want to delete this project? This can't be reverted"))
     document.forms[0].submit();
   else
     return false;

@@ -56,8 +56,9 @@ if (isset ($_SESSION['email'])){
 
 		while($row2 = mysql_fetch_row($query))
 		{
-				echo "<tr>";
 				echo "<form action = 'proj_details.php' id='regform' method='post' enctype ='multipart/form-data' >";
+				echo "<tr>";
+				
 
 				echo "<td>$row2[0]<input type='hidden' name = 'idproject' value ='$row2[0]'></input></td>";
 				echo "<td>$row2[1]<input type='hidden' name = 'proj_name' id = 'proj_name'value ='$row2[1]'></input></td>";
@@ -65,9 +66,10 @@ if (isset ($_SESSION['email'])){
 				echo "<td>$row2[3]<input type='hidden' name = 'no_carcasses' value ='$row2[0]'></input></td>"; 
 				echo "<td><input type='submit' name = 'view' value ='View details'></input></td>";
 				echo "<td><input type='submit' name = 'delete' value ='Delete' onclick = 'return conf()' ></input></td>";
-				echo"</form>";
+				
 
 				echo "</tr>";
+				echo"</form>";
 			}
 		
 		echo "</table>";	
@@ -75,7 +77,11 @@ if (isset ($_SESSION['email'])){
 	}
 		
 }
+else
+{ 
+header("location:index.php");    
 
+}
 
 
 

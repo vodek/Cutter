@@ -9,7 +9,7 @@
 <div id="content" class="content" >
 <?php
 //all code goes here
-
+if (isset($_POST['email']) and isset($_POST['password'])){
 $email = $_POST['email'];
 $password = $_POST['password'];
 $sql = "SELECT email, fname FROM user WHERE email = '$email' AND password = '$password' "; 
@@ -35,7 +35,7 @@ else{
     }
 	
 	
-	header("Refresh:3; url=index.php");
+	header("location:index.php");
 	echo'<a>You will be shortly redirected to your hompage</a></br>';
 	echo'<a>If does not happen: </a>';
 	echo'<a href ="index.php">Click here</a>';
@@ -43,8 +43,12 @@ else{
     mysql_free_result($result);
 	
 
-
-
+}
+else{
+	//if no posted variables, go to index.php
+	header("location:index.php");
+	
+}
 
 
 

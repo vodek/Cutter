@@ -40,30 +40,28 @@ if (isset ($_SESSION['email'])){
 	//if number of saved projects is grater than 0
 	if ($row1[0]>0){
 		//query projects details matching user id
-		$query = mysql_query("SELECT idproject,proj_name, proj_date,COUNT(carcass.idcarcass) 
+		$query = mysql_query("SELECT proj_name, proj_date
 		FROM project
-		LEFT JOIN carcass ON carcass.project_idproject = project.idproject
-		WHERE project.user_iduser = $iduser
-		GROUP BY carcass.project_idproject") or die(mysql_error());
+		WHERE project.user_iduser = $iduser") or die(mysql_error());
 		
 		//display table with brief details to user 
 		echo "<table border='1' class='table'>";
 		echo "</br></br><tr>";
 		
-				echo "<th>ID</th>";
+				//echo "<th>ID</th>";
 				echo "<th>Project name</th>";
 				echo "<th>Date created</th>";
-				echo "<th>Qty of carcass</th>";
+				//echo "<th>Qty of carcass</th>";
 				echo "</tr>";
 
 		while($row2 = mysql_fetch_row($query))
 		{
 				echo "<tr>";
 
+				//echo "<td>$row2[0]</td>";
 				echo "<td>$row2[0]</td>";
 				echo "<td>$row2[1]</td>";
-				echo "<td>$row2[2]</td>";
-				echo "<td>$row2[3]</td>";
+				//echo "<td>$row2[3]</td>";
 				
 
 				echo "</tr>";

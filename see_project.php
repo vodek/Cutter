@@ -59,15 +59,15 @@ $query1 = "INSERT INTO project(idproject, proj_name, proj_date, user_iduser)
 				
 					$data1 = mysql_query ($query4) or die(mysql_error());
 				
-				
+			}
 			if ($data1){	
-			
+			header("location:saved_projects.php");
 		
 			}
 		
 		
 	
-			}
+			
 			
 			
 		

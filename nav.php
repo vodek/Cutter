@@ -2,7 +2,7 @@
 <menu>
 <?php
 session_start();
-include_once("scripts/connect_to_mysql.php");
+require_once("scripts/connect_to_mysql.php");
 ?>
 <?php
 
@@ -15,18 +15,16 @@ $count = mysql_num_rows($result);
 
 	$row = mysql_fetch_row($result);
 	echo"<div class = 'loginfo' >";
-	echo"You are logged in as ".$row[0]."";
-	echo' <form class = "loginfo" action="confirmlogout.php" id"menuform" method="post">
-			<input class = "loginfo1" type= "submit"id="sub"  onclick="" value = "LOG OUT" />
-			</form></br>';
+	echo"You are logged in as ".$row[0]."</br><a href ='confirmlogout.php'>[Log out]</a>";
+
 echo "</div>";
 echo"<div>";	
-echo'<ol>';		
-echo '<li><a href="index.php">Home</a></li></br>
+echo'</br><ol>';		
+echo '</br><li><a href="index.php">Home</a></li></br>
 <li><a href="new_project.php">New Project</a></li></br>
-<li><a href="saved_projects.php">View saved projects</a></li></br>
+<li><a href="saved_projects.php">View saved projects</a></li></br>';
 
-</br><li><a href="seeall.php">Cheet test</a></li></br>';
+
 echo'</ol>';
 echo "</div>";
 

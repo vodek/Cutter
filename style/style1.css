@@ -203,10 +203,6 @@ margin-right:auto;
 
 }
 
-#tableint{
-margin-top:-100px;
-}
-
 
 .loginfo{
 
@@ -229,12 +225,31 @@ input[type="number"] {
    width:3em;
 }
 
+/*  .table3, td{
+    border: 1px solid #6e6e6e;
+	margin-left:auto;
+margin-right:auto;
+text-align:center;
 
+/* color:#6e6e6e; */
+}  */
 
+.table3, th{
+background-color:#6e6e6e;
+    /* border: 1px solid #6e6e6e; */
+	margin-left:auto;
+margin-right:auto;
+margin-top:auto;
+  color: white;
+}
 
+td.odd {
 
+background-color:red;
 
+}
 
+/* #E0D6CC */
 
 
 

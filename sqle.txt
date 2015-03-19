@@ -1,0 +1,101 @@
+SELECT carcass.idcarcass,  side.idside  , side.height, side.width, side.thickness, top_bot.idtop_bot  , top_bot.height, top_bot.width, top_bot.thickness,  shelf.idshelf  , shelf.height, shelf.width, shelf.thickness,  backboard.idbackboard  , backboard.height, backboard.width, backboard.thickness
+FROM carcass
+LEFT JOIN side ON carcass.idcarcass = side.carcass_idcarcass
+LEFT JOIN top_bot ON carcass.idcarcass = top_bot.carcass_idcarcass
+LEFT JOIN shelf ON carcass.idcarcass = shelf.carcass_idcarcass
+LEFT JOIN backboard ON carcass.idcarcass = backboard.carcass_idcarcass
+WHERE carcass.idcarcass =25
+
+
+
+
+SELECT COUNT(*)  side.idside  , side.height, side.width, side.thickness, top_bot.idtop_bot  , top_bot.height, top_bot.width, top_bot.thickness,  shelf.idshelf  , shelf.height, shelf.width, shelf.thickness,  backboard.idbackboard  , backboard.height, backboard.width, backboard.thickness
+FROM carcass
+LEFT JOIN side ON carcass.idcarcass = side.carcass_idcarcass
+LEFT JOIN top_bot ON carcass.idcarcass = top_bot.carcass_idcarcass
+LEFT JOIN shelf ON carcass.idcarcass = shelf.carcass_idcarcass
+LEFT JOIN backboard ON carcass.idcarcass = backboard.carcass_idcarcass
+WHERE carcass.idcarcass =25
+
+SELECT carcass.idcarcass,  side.idside  , side.height, side.width, side.thickness, top_bot.idtop_bot  , top_bot.height, top_bot.width, top_bot.thickness,  shelf.idshelf  , shelf.height, shelf.width, shelf.thickness,  backboard.idbackboard  , backboard.height, backboard.width, backboard.thickness
+FROM carcass, side, top_bot, shelf, backboard
+
+WHERE carcass.idcarcass =25
+
+SELECT carcass.idcarcass,  COUNT(side.idside)  , side.height, side.width, side.thickness, COUNT(top_bot.idtop_bot)  , top_bot.height, top_bot.width, top_bot.thickness,  COUNT(shelf.idshelf)  , shelf.height, shelf.width, shelf.thickness, COUNT( backboard.idbackboard)  , backboard.height, backboard.width, backboard.thickness
+FROM carcass, side, top_bot, shelf, backboard
+
+
+GROUP BY carcass.idcarcass
+
+
+SELECT carcass.idcarcass, side.idside, side.height, side.width, side.thickness
+FROM carcass
+LEFT JOIN side ON carcass.idcarcass = side.carcass_idcarcass
+LIMIT 0 , 30
+
+
+
+
+
+//create views
+
+SELECT carcass.idcarcass, COUNT(shelf.idshelf) AS qty, shelf.height, shelf.width, shelf.thickness
+FROM carcass
+LEFT JOIN shelf ON carcass.idcarcass = shelf.carcass_idcarcass
+GROUP BY carcass.idcarcass
+
+
+SELECT carcass.idcarcass, COUNT(side.idside) AS qty, side.height, side.width, side.thickness
+FROM carcass
+LEFT JOIN side ON carcass.idcarcass = side.carcass_idcarcass
+GROUP BY carcass.idcarcass
+
+
+SELECT carcass.idcarcass, COUNT(top_bot.idtop_bot) AS qty, top_bot.height, top_bot.width, top_bot.thickness
+FROM carcass
+LEFT JOIN top_bot ON carcass.idcarcass = top_bot.carcass_idcarcass
+GROUP BY carcass.idcarcass
+
+SELECT carcass.idcarcass, COUNT(backboard.idbackboard) AS qty, backboard.height, backboard.width, backboard.thickness
+FROM carcass
+LEFT JOIN backboard ON carcass.idcarcass = backboard.carcass_idcarcass
+GROUP BY carcass.idcarcass
+
+CREATE view qty_all AS 
+SELECT qtyside.idcarcass AS carcassid, qtyside.qty AS qty_side, qtyside.height AS height_side, qtyside.width AS width_side, qtyside.thickness AS thicknessside, 
+qtytop_bot.qty AS qty_top_bot, qtytop_bot.height AS height_top_bot, qtytop_bot.width AS width_top_bot, qtytop_bot.thickness AS thickness_top_bot,
+qtybackboard.qty AS qty_backboard, qtybackboard.height AS height_backboard, qtybackboard.width AS width_backboard, qtybackboard.thickness AS thickness_backboard,
+qtyshelf.qty AS qty_shelf, qtyshelf.height AS height_shelf, qtyshelf.width AS width_shelf, qtyshelf.thickness AS thickness_shelf
+ FROM qtyside
+LEFT JOIN qtytop_bot ON qtyside.idcarcass=qtytop_bot.idcarcass
+LEFT JOIN qtybackboard ON qtyside.idcarcass=qtybackboard.idcarcass
+LEFT JOIN qtyshelf ON qtyside.idcarcass=qtyshelf.idcarcass
+GROUP BY qtyside.idcarcass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
