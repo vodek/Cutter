@@ -12,6 +12,11 @@
 if (isset($_POST['email']) and isset($_POST['password'])){
 $email = $_POST['email'];
 $password = $_POST['password'];
+
+$email = htmlentities($email, ENT_QUOTES, "UTF-8");
+$password = htmlentities($password, ENT_QUOTES, "UTF-8");
+
+
 $sql = "SELECT email, fname FROM user WHERE email = '$email' AND password = '$password' "; 
 $result = mysql_query($sql);
 

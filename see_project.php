@@ -52,18 +52,82 @@ $query1 = "INSERT INTO project(idproject, proj_name, proj_date, user_iduser)
 				$backthickness = $_POST['back_thickness'.($i+1)];
 				$noShelves = $_POST['noShelves'.($i+1)];
 				$colour = $_POST['c_colour'.($i+1)];
+				$shelf_height = $width - (2*$thickness)-3;
+				$shelf_width = $depth-20;
+				$top_bot_height = ($width - (2*$thickness));
+				
+				
+				
 		
 				//insert data to DB table
 				$query4 = "INSERT INTO carcass (idcarcass, height, width, depth, thickness, back_thickness, no_shelves, colour, project_idproject)  
 				VALUES ('',$height, $width, $depth, $thickness, $backthickness, $noShelves, '$colour', $idproject)";
 				
 					$data1 = mysql_query ($query4) or die(mysql_error());
+					
+				if ($data1){
+					
+					$result = mysql_query("SELECT max(idcarcass) FROM carcass ");
+					$row = mysql_fetch_array($result);
+					$idcarcass = $row[0];
+					
+					$query5 = "INSERT INTO backboard (idbackboard, height, width, thickness, carcass_idcarcass)  
+					VALUES ('',$height, $width, $backthickness, $idcarcass)";
+				
+					$data2 = mysql_query ($query5) or die(mysql_error());
+					
+					for($x=0; $x < ($noShelves); $x++){
+					$query6 = "INSERT INTO shelf (idshelf, height, width, thickness, carcass_idcarcass)  
+					VALUES ('',$shelf_height, $shelf_width, $thickness, $idcarcass)";
+				
+					$data3 = mysql_query ($query6) or die(mysql_error()); 
+					}
+					
+					for($x=0; $x<2; $x++){
+					$query7 = "INSERT INTO side (idside, height, width, thickness, carcass_idcarcass)  
+					VALUES ('',$height, $depth, $thickness, $idcarcass)";
+				
+					$data4 = mysql_query ($query7) or die(mysql_error());
+					}
+					for($x=0; $x<2; $x++){
+					$query8 = "INSERT INTO top_bot (idtop_bot, height, width, thickness, carcass_idcarcass)  
+					VALUES ('',$top_bot_height, $depth, $thickness, $idcarcass)";
+					
+					$data5 = mysql_query ($query8) or die(mysql_error()); 
+					}
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+
+
+
+
+				}
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				
 			}
 			if ($data1){	
 			header("location:saved_projects.php");
 		
-			}
+			} 
 		
 		
 	

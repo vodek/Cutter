@@ -34,7 +34,7 @@ if (isset ($_SESSION['email'])){
 	else{$gramatyka = "projects";
 	}
 	//output to user telling about number of saved projects
-	echo "You have ".$row1[0]. " saved ".$gramatyka." in our database ";
+	echo "<h3>You have ".$row1[0]. " saved ".$gramatyka." in our database</h3> ";
 	//if number of saved projects is grater than 0
 	if ($row1[0]>0){
 		//query projects details matching user id

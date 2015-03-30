@@ -1,8 +1,12 @@
 body
 {
-margin:0px;
+margin:1em;
 font-family: "Sans MS",sans-serif;
-background-image: url("../images/wallpaper.jpg"); 
+background-image: url("../images/Melamine-wood-005.png"); 
+background-repeat: repeat;
+background-attachment:fixed;
+
+
 background-color:#CCCCCC;
 
 
@@ -17,7 +21,7 @@ ul
 list-style-type:none;
 display:flex;
 flex-flow: row wrap;
-margin-left:10px;
+margin-left:0px;
 margin-right:10px;
 }
 ul>img
@@ -57,16 +61,20 @@ body>div
 {
 display:flex;
 flex-flow: row wrap;
-margin-left:4%;
-margin-right:4%;
+margin-left:0%;
+margin-right:0%;
 
 }
  body>div>header,footer
 {
-opacity: .7;
-background: -moz-linear-gradient(bottom right,	#E0D6CC, #C2E0FF);
 
-} 
+opacity: .6;
+/* background: -moz-linear-gradient(bottom right,	#E0D6CC, #C2E0FF);/*firefox*/
+/*background: linear-gradient(bottom right,	#E0D6CC, #C2E0FF); /*standard syntax*/
+/*background: -webkit-linear-gradient(bottom right,	#E0D6CC,white, #C2A385);/*chrome safari*/
+/*background: -o-linear-gradient(bottom right,	#E0D6CC, #C2E0FF);/*opera*/
+
+}  
 
 
 
@@ -75,11 +83,12 @@ body>div>header,menu,content,footer
 background-color:#FFFFFF;
 opacity: .9;
 
-margin:10px;
+margin:0.5em;
 padding:20px;
 color:#6e6e6e;
-box-shadow:0.2em 0.2em 0.2em 0.2em;
-border-radius: 1em;
+box-shadow:0.3em 0.3em 0.3em 0.3em #704e32; 
+
+border-radius: 0em;
 }
 .button
 {   
@@ -109,8 +118,9 @@ height:100%;
 body>div>menu
 {
 order:2;
-flex: 0 1 150px;
+flex: 0 1 2em;
 font-size:1.2em;
+text-align:left;
 
 }
 
@@ -243,11 +253,19 @@ margin-top:auto;
   color: white;
 }
 
-td.odd {
+#odd {
 
-background-color:red;
+background-color:#E0D1C2;
 
 }
+
+#odd1{
+
+color:#E0D1C2;
+
+}
+
+
 
 /* #E0D6CC */
 

@@ -22,7 +22,7 @@ if (  (isset($_POST['view'])) or (isset($_POST['delete']))   )
 	
 	if (isset($_POST['view'])) {
 		//update action
-		echo'Details for project "'.$proj_name.'" created on '.$proj_date;
+		echo'<h3>List of carcasses for project "'.$proj_name.'" created on '.$proj_date.'</h3>';
 		$query = mysql_query("SELECT idcarcass, height, width, depth, no_shelves, thickness, back_thickness, colour 
 		FROM carcass
 		WHERE project_idproject = $idproject
