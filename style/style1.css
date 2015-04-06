@@ -15,14 +15,14 @@ ol
 {
 list-style-type:none;
 font-size:1em;
+flex-flow: row wrap;
 }
 ul
 {
 list-style-type:none;
 display:flex;
 flex-flow: row wrap;
-margin-left:0px;
-margin-right:10px;
+
 }
 ul>img
 {
@@ -118,9 +118,10 @@ height:100%;
 body>div>menu
 {
 order:2;
-flex: 0 1 2em;
+flex: 0 1 4em;
 font-size:1.2em;
 text-align:left;
+min-width: 150px;
 
 }
 
@@ -232,7 +233,7 @@ float:right;
 
 
 input[type="number"] {
-   width:3em;
+   width:4em;
 }
 
 /*  .table3, td{

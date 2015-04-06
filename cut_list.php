@@ -81,6 +81,7 @@ if (isset ($_SESSION['email'])){
 				$idcarcass = $_POST['idcarcass'.($i+1)];
 					//get data from DB
 			$query = "SELECT * FROM qty_all WHERE carcassid = $idcarcass";
+			
 			$result= mysql_query($query);
 		
 			
@@ -143,12 +144,21 @@ if (isset ($_SESSION['email'])){
 				}
 				echo"</td>";
 				
-				echo "</tr>";			
+				echo "</tr>";
+
+				echo "<tr>";
+
+				
 			
 			}
+	
 		
 				}
-			
+				
+			/* echo "<tr>";
+			echo"<td></td>";
+			echo "<td>$counter</td>";
+			echo"</tr>"; */
 			
 			unset ($_SESSION['proj_name']);
 			unset ($_SESSION['proj_date']);
