@@ -1,16 +1,18 @@
-<?php  
- 
-//db host name 
 
-$db_host = "localhost"; 
-//username for the MySQL database
-$db_username = "root";  
-//password for the MySQL database
-$db_pass = "";  
-//name for the MySQL database
-$db_name = "cutter"; 
 
- 
-mysql_connect("$db_host","$db_username","$db_pass") or die ("could not connect to mysql");
-mysql_select_db("$db_name") or die ("no database");              
-?>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname= "cutter";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+//echo "Connected successfully";
+?> 

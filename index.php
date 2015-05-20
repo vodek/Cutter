@@ -15,18 +15,18 @@ if (isset ($_SESSION['email'])){
 	//declare local variable to match session
 	$email = $_SESSION['email'];
 	//query logged user details from DB
-	$result = mysql_query("SELECT fname, lname, iduser FROM user WHERE email = '$email' ");
+	$result = mysqli_query($conn, "SELECT fname, lname, iduser FROM user WHERE email = '$email' ");
 	//number of rows as query result
-	$count = mysql_num_rows($result);
+	$count = $result->num_rows;
 	//fetching rows from DB table matching query
-	$row = mysql_fetch_row($result);
+	$row = mysqli_fetch_row($result);
 	
 	//greeting user with first and second name from DB
 	echo"Welcome ".$row[0]." ".$row[1]."</br>";
 	//query number of saved projects matching logged user ID
-	$result1 = mysql_query("SELECT COUNT(idproject) FROM project WHERE user_iduser = '$row[2]'");
-	$count1 = mysql_num_rows($result1);
-	$row1 = mysql_fetch_row($result1);
+	$result1 = mysqli_query($conn, "SELECT COUNT(idproject) FROM project WHERE user_iduser = '$row[2]'");
+	$count1 = $result1->num_rows;
+	$row1 = mysqli_fetch_row($result1);
 	$gramatyka = "";
 	$iduser = $row[2];
 	//little bit of grama ;) (to use string "project" as singular or plural noun when appropriate)
@@ -40,7 +40,7 @@ if (isset ($_SESSION['email'])){
 	//if number of saved projects is grater than 0
 	if ($row1[0]>0){
 		//query projects details matching user id
-		$query = mysql_query("SELECT proj_name, proj_date
+		$query = mysqli_query($conn, "SELECT proj_name, proj_date
 		FROM project
 		WHERE project.user_iduser = $iduser") or die(mysql_error());
 		
@@ -54,7 +54,7 @@ if (isset ($_SESSION['email'])){
 				//echo "<th>Qty of carcass</th>";
 				echo "</tr>";
 
-		while($row2 = mysql_fetch_row($query))
+		while($row2 = mysqli_fetch_row($query))
 		{
 				echo "<tr>";
 

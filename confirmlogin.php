@@ -18,9 +18,9 @@ $password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
 
 $sql = "SELECT email, fname FROM user WHERE email = '$email' AND password = '$password' "; 
-$result = mysql_query($sql);
+$result = mysqli_query($conn, $sql);
 
-$count= mysql_num_rows($result);
+$count= mysqli_num_rows($result);
 if(!$count > 0){
         echo "<a>problem with your email or password </a></br><a href = login.php> Try again</a>";
        
@@ -29,7 +29,7 @@ if(!$count > 0){
 
 else{
 	
-    while($row = mysql_fetch_assoc($result)) {
+    while($row = mysqli_fetch_assoc($result)) {
 		$_SESSION['email'] = $row['email'];
         echo "<a>Welcome ".$row['fname'].", you are now logged in. </a></br>";
 		

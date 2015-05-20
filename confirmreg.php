@@ -20,9 +20,9 @@ $address1 = ucwords(strtolower($_POST['address1']));
 $address2 = ucwords(strtolower($_POST['address2']));
 $town = ucwords(strtolower($_POST['town']));
 $pcode = $_POST['pcode'];
-$query = mysql_query("SELECT email FROM user WHERE email ='$email'") or die(mysql_error());
+$sql = "SELECT * FROM user WHERE email ='$email'";
 
-
+$result = $conn->query($sql);
 
 
 
@@ -36,18 +36,20 @@ if($password != $password1){
 
 
 
-elseif(mysql_num_rows($query) >0){
+elseif($result->num_rows > 0){
             
 		echo "<a>SORRY...THIS EMAIL IS ALREADY REGISTERED...:(<a></br>";
 		echo"<a href='register.php'>Try again</a>";
 		echo "</br><a href = 'login.php'>Or, log in</a>";
 	}
-elseif(!mysql_num_rows($query) >0){
+elseif(!$result->num_rows > 0){
 	
-	$query1 = "INSERT INTO user(iduser, fname, lname, email, password, address1, address2, town, pcode) 
-	VALUES ('','$fname','$lname','$email','$password', '$address1', '$address2', '$town', '$pcode')";
-		$data = mysql_query ($query1) or die(mysql_error());
-		if($data){
+	$sql = "INSERT INTO user(fname, lname, email, password, address1, address2, town, pcode) VALUES ('$fname','$lname','$email','$password', '$address1', '$address2', '$town', '$pcode')";
+	
+	//$email_in= mysqli_query($conn, $sql);
+	
+		
+		if($conn->query($sql) === TRUE){
 		
 		$_SESSION['email'] = $email;
 		echo "<a>YOUR REGISTRATION IS COMPLETED...</a>";
@@ -55,6 +57,9 @@ elseif(!mysql_num_rows($query) >0){
 		echo'<a>You will be shortly redirected to your hompage</a></br>';
 		echo'<a>If does not happen: </a>';
 		echo'<a href ="index.php">Click here</a>';
+		}
+		else if($conn->query($sql) === FALSE){
+		echo "dupa blada";	
 		}
 	
 	

@@ -10,10 +10,10 @@ require_once("scripts/connect_to_mysql.php");
 
 if (isset ($_SESSION['email'])){
 $email = $_SESSION['email'];	
-$result = mysql_query("SELECT fname FROM user WHERE email = '$email' ");
-$count = mysql_num_rows($result);
+$result = mysqli_query($conn, "SELECT fname FROM user WHERE email = '$email' ");
+$count = mysqli_num_rows($result);
 
-	$row = mysql_fetch_row($result);
+	$row = mysqli_fetch_row($result);
 	echo"<div class = 'loginfo' >";
 	echo"You are logged in as ".$row[0]."</br><a href ='confirmlogout.php'>[Log out]</a>";
 

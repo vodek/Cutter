@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+
+
+
+
+function nester(){
+elheight = document.getElementById("elheight").value;
+elwidth = document.getElementById("elwidth").value;
+ elheight2 = document.getElementById("elheight2").value;
+elwidth2 = document.getElementById("elwidth2").value;
+kerf=document.getElementById("kerf").value;
+canheight = document.getElementById("canheight").value;
+ canwidth = document.getElementById("canwidth").value;
+
+
+document.getElementById('mycanvas').innerHTML = " <canvas id='myCanvas' width="+"'"+canwidth+"'"+" height="+"'"+canheight+"'"+" style='border:1px solid #000000;'></canvas> ";
+
+
+
+
+
+return nester2();
+
+
+
+}
+function nester2(){
+
+
+
+
+ c = document.getElementById("myCanvas");
+ctx = c.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,elwidth,elheight);
+ctx.fillStyle = "black";
+      ctx.font = "10pt sans-serif";
+      ctx.fillText(""+elheight+"x"+elwidth+" (HxW)", elwidth/4, elheight/2);
+
+return nester3();
+
+}
+function nester3(){
+
+
+var kerf1 = canheight-(canheight-elheight-kerf);
+
+
+ctx.fillStyle = "blue";
+ctx.fillRect(0,kerf1,elwidth2,elheight2);
+ctx.fillStyle = "black";
+      ctx.font = "10pt sans-serif";
+      ctx.fillText(""+elheight2+"x"+elwidth2+" (HxW)", elwidth2/4, kerf1+elheight2/2);
+
+return false;
+
+
+
+
+}
+
+
+</script>
+</head>
+<body>
+<div>
+<form id="myform" onsubmit="return nester()">
+<h2>Enter element size</h2>
+<h3>Pierwszy kawalek</h3>
+<label>Height<input id="elheight" onchange = "return nester()" type ="number" max="2900" min="100" placeholder="Heigth [mm]"        /></label>
+<label>Width<input id="elwidth" onchange = "return nester()" type ="number" max="1500" min="100" placeholder="Width [mm]"        /></label>
+<h3>Drugi kawalek</h3>
+<label>Height<input id="elheight2" onchange = "return nester()" type ="number" max="2900" min="100" placeholder="Heigth [mm]"        /></label>
+<label>Width<input id="elwidth2" onchange = "return nester()" type ="number" max="1500" min="100" placeholder="Width [mm]"        /></label></br>
+<label>Saw kerf<input id="kerf" onchange = "return nester()"type ="number" max="6" min="2" placeholder="Saw kerf [mm]"        /></label>
+<h2>Enter material size</h2>
+<label><input id="canheight"  onchange = "return nester()" type ="number" max="3000" min="2400" placeholder="Heigth [mm]"        /></label>
+<label><input id="canwidth" onchange = "return nester()" type ="number" max="1500" min="900" placeholder="Width [mm]"        /></label>
+
+<input type ="submit" value ="Dajesz mietek, KURWA"  />
+
+</form>
+</div>
+</br>
+<div id="mycanvas">
+
+
+</div
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

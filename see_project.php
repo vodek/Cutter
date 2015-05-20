@@ -22,19 +22,19 @@ $proj_name = $_POST['prTitle'];
 $proj_date = date('Y/m/d');
 $email = $_SESSION['email'];
 //get logged user ID from DB
-$query = mysql_query("SELECT iduser FROM user WHERE email ='$email'") or die(mysql_error());
-$row = mysql_fetch_array($query);
+$query = mysqli_query($conn, "SELECT iduser FROM user WHERE email ='$email'") or die(mysql_error());
+$row = mysqli_fetch_array($query);
 //declare user ID as variable
 $iduser = $row[0]; 
 
 //insert data into "project" table
-$query1 = "INSERT INTO project(idproject, proj_name, proj_date, user_iduser) 
-	VALUES ('','$proj_name', '$proj_date', $iduser)";
-		$data = mysql_query ($query1) or die(mysql_error());
+$query1 = "INSERT INTO project(proj_name, proj_date, user_iduser) 
+	VALUES ('$proj_name', '$proj_date', $iduser)";
+		$data = mysqli_query ($conn, $query1) or die(mysqli_error($conn));
 		if($data){
 			//query the project ID (auto incremented) from project table (just inserted)
-			$query2 = mysql_query("SELECT idproject FROM project WHERE user_iduser =$iduser AND proj_name = '$proj_name' AND proj_date = '$proj_date'") or die(mysql_error());
-			$row1 = mysql_fetch_array($query2);
+			$query2 = mysqli_query($conn, "SELECT idproject FROM project WHERE user_iduser =$iduser AND proj_name = '$proj_name' AND proj_date = '$proj_date'") or die(mysqli_error());
+			$row1 = mysqli_fetch_array($query2);
 			//declare variable project ID
 			$idproject = $row1[0];
 			//set session "idproject"
@@ -55,50 +55,43 @@ $query1 = "INSERT INTO project(idproject, proj_name, proj_date, user_iduser)
 				$shelf_height = $width - (2*$thickness)-3;
 				$shelf_width = $depth-20;
 				$top_bot_height = ($width - (2*$thickness));
-				
-				
-				
-		
+					
 				//insert data to DB table
-				$query4 = "INSERT INTO carcass (idcarcass, height, width, depth, thickness, back_thickness, no_shelves, colour, project_idproject)  
-				VALUES ('',$height, $width, $depth, $thickness, $backthickness, $noShelves, '$colour', $idproject)";
+				$query4 = "INSERT INTO carcass (height, width, depth, thickness, back_thickness, no_shelves, colour, project_idproject)  
+				VALUES ($height, $width, $depth, $thickness, $backthickness, $noShelves, '$colour', $idproject)";
 				
-					$data1 = mysql_query ($query4) or die(mysql_error());
+					$data1 = mysqli_query ($conn, $query4) or die(mysqli_error($conn));
 					
 				if ($data1){
 					
-					$result = mysql_query("SELECT max(idcarcass) FROM carcass ");
-					$row = mysql_fetch_array($result);
+					$result = mysqli_query($conn, "SELECT max(idcarcass) FROM carcass ");
+					$row = mysqli_fetch_array($result);
 					$idcarcass = $row[0];
 					
-					$query5 = "INSERT INTO backboard (idbackboard, height, width, thickness, carcass_idcarcass)  
-					VALUES ('',$height, $width, $backthickness, $idcarcass)";
+					$query5 = "INSERT INTO backboard (height, width, thickness, carcass_idcarcass)  
+					VALUES ($height, $width, $backthickness, $idcarcass)";
 				
-					$data2 = mysql_query ($query5) or die(mysql_error());
+					$data2 = mysqli_query ($conn, $query5) or die(mysqli_error($conn));
 					
 					for($x=0; $x < ($noShelves); $x++){
-					$query6 = "INSERT INTO shelf (idshelf, height, width, thickness, carcass_idcarcass)  
-					VALUES ('',$shelf_height, $shelf_width, $thickness, $idcarcass)";
+					$query6 = "INSERT INTO shelf (height, width, thickness, carcass_idcarcass)  
+					VALUES ($shelf_height, $shelf_width, $thickness, $idcarcass)";
 				
-					$data3 = mysql_query ($query6) or die(mysql_error()); 
+					$data3 = mysqli_query ($conn, $query6) or die(mysqli_error($conn)); 
 					}
 					
 					for($x=0; $x<2; $x++){
-					$query7 = "INSERT INTO side (idside, height, width, thickness, carcass_idcarcass)  
-					VALUES ('',$height, $depth, $thickness, $idcarcass)";
+					$query7 = "INSERT INTO side (height, width, thickness, carcass_idcarcass)  
+					VALUES ($height, $depth, $thickness, $idcarcass)";
 				
-					$data4 = mysql_query ($query7) or die(mysql_error());
+					$data4 = mysqli_query ($conn, $query7) or die(mysqli_error($conn));
 					}
 					for($x=0; $x<2; $x++){
-					$query8 = "INSERT INTO top_bot (idtop_bot, height, width, thickness, carcass_idcarcass)  
-					VALUES ('',$top_bot_height, $depth, $thickness, $idcarcass)";
+					$query8 = "INSERT INTO top_bot (height, width, thickness, carcass_idcarcass)  
+					VALUES ($top_bot_height, $depth, $thickness, $idcarcass)";
 					
-					$data5 = mysql_query ($query8) or die(mysql_error()); 
-					}
-					
-					
-					
-					
+					$data5 = mysqli_query ($conn, $query8) or die(mysqli_error($conn)); 
+					}		
 					
 					
 					

@@ -40,27 +40,33 @@ LIMIT 0 , 30
 
 //create views
 
+
+
+CREATE view qtyshelf AS 
+
 SELECT carcass.idcarcass, COUNT(shelf.idshelf) AS qty, shelf.height, shelf.width, shelf.thickness
 FROM carcass
 LEFT JOIN shelf ON carcass.idcarcass = shelf.carcass_idcarcass
-GROUP BY carcass.idcarcass
+GROUP BY carcass.idcarcass;
 
-
+CREATE view qtyside AS 
 SELECT carcass.idcarcass, COUNT(side.idside) AS qty, side.height, side.width, side.thickness
 FROM carcass
 LEFT JOIN side ON carcass.idcarcass = side.carcass_idcarcass
-GROUP BY carcass.idcarcass
+GROUP BY carcass.idcarcass;
 
-
+CREATE view qtytop_bot AS 
 SELECT carcass.idcarcass, COUNT(top_bot.idtop_bot) AS qty, top_bot.height, top_bot.width, top_bot.thickness
 FROM carcass
 LEFT JOIN top_bot ON carcass.idcarcass = top_bot.carcass_idcarcass
-GROUP BY carcass.idcarcass
+GROUP BY carcass.idcarcass;
 
+
+CREATE view qtybackboard AS 
 SELECT carcass.idcarcass, COUNT(backboard.idbackboard) AS qty, backboard.height, backboard.width, backboard.thickness
 FROM carcass
 LEFT JOIN backboard ON carcass.idcarcass = backboard.carcass_idcarcass
-GROUP BY carcass.idcarcass
+GROUP BY carcass.idcarcass;
 
 CREATE view qty_all AS 
 SELECT qtyside.idcarcass AS carcassid, qtyside.qty AS qty_side, qtyside.height AS height_side, qtyside.width AS width_side, qtyside.thickness AS thicknessside, 
@@ -71,7 +77,7 @@ qtyshelf.qty AS qty_shelf, qtyshelf.height AS height_shelf, qtyshelf.width AS wi
 LEFT JOIN qtytop_bot ON qtyside.idcarcass=qtytop_bot.idcarcass
 LEFT JOIN qtybackboard ON qtyside.idcarcass=qtybackboard.idcarcass
 LEFT JOIN qtyshelf ON qtyside.idcarcass=qtyshelf.idcarcass
-GROUP BY qtyside.idcarcass
+GROUP BY qtyside.idcarcass;
 
 
 

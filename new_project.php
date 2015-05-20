@@ -23,11 +23,7 @@ echo
 "	
 <h3>Please enter project detail</h3>
 
-<form action = '' id='projform' method='post'  onSubmit = 'return calc()' >
-
-
-
-
+<form action = 'new_project1.php' id='projform' method='post'>
 
 
 <label><input required type='text' id= 'pname' name= 'pname' size='30'maxlength='30' autofocus='autofocus' placeholder='Project name'></input></label></br>
@@ -46,7 +42,7 @@ echo
 <input type='submit'  id='submit2'  name='submit'  value = 'Submit'/>
 </form>	";	
 echo '<div id="carcass_list_title" name="carcass_list_title" class="content"></div>';		
-echo '<form action ="see_project.php" method="post" name="project1" > <div id="carcass_list" name="carcass_list" class="content" >      </form></div> ';	
+	
 	
 	
 	

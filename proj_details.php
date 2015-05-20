@@ -23,10 +23,10 @@ if (  (isset($_POST['view'])) or (isset($_POST['delete']))   )
 	if (isset($_POST['view'])) {
 		//update action
 		echo'<h3>List of carcasses for project "'.$proj_name.'" created on '.$proj_date.'</h3>';
-		$query = mysql_query("SELECT idcarcass, height, width, depth, no_shelves, thickness, back_thickness, colour 
+		$query = mysqli_query($conn,"SELECT idcarcass, height, width, depth, no_shelves, thickness, back_thickness, colour 
 		FROM carcass
 		WHERE project_idproject = $idproject
-		GROUP BY idcarcass") or die(mysql_error());
+		GROUP BY idcarcass") or die(mysqli_error());
 		
 		$count = 0;
 		//$row2 = mysql_fetch_row($query);
@@ -49,7 +49,7 @@ if (  (isset($_POST['view'])) or (isset($_POST['delete']))   )
 				echo "</tr>";
 				
 
-		while($row2 = mysql_fetch_row($query))
+		while($row2 = mysqli_fetch_row($query))
 		
 		{//for ($i=0; $i< count($row2); ++$i){
 				
@@ -97,7 +97,7 @@ if (  (isset($_POST['view'])) or (isset($_POST['delete']))   )
 	else if (isset($_POST['delete'])) 
 	{
 		//delete action
-		$query = mysql_query("DELETE 
+		$query = mysqli_query($conn, "DELETE 
 		FROM project
 		WHERE idproject = $idproject") or die(mysql_error());
 		
