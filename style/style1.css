@@ -55,7 +55,7 @@ a:link:hover
 }
 a:active {
 
-color: #black;
+color: black;
 }
 body>div
 {
@@ -175,7 +175,7 @@ height:700px;
 
 }
 .table{
-float:top;
+
 margin-left:auto;
 margin-right:auto;
 
@@ -210,7 +210,7 @@ color:#6e6e6e;
 
 
 .table1,td{
-float:top;
+
 border-collapse: collapse;
 border: 0px;
 margin-left:auto;
@@ -247,8 +247,8 @@ input[type="number"] {
 margin-right:auto;
 text-align:center;
 
-/* color:#6e6e6e; */
-}  */
+/* color:#6e6e6e;} */
+
 
 .table3, th{
 background-color:#6e6e6e;
