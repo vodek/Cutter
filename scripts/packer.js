@@ -1,4 +1,5 @@
-//function to add sizes to array(method)
+//function to add sizes to array(method
+
 function Shape(nazwa, car, w, h) {
 	this.nazwa = nazwa;
 	this.car = car;
@@ -7,7 +8,7 @@ function Shape(nazwa, car, w, h) {
     this.h = h;
    
 }
-function Canv(W, H){
+/* function Canv(W, H){
 
 	this.H=H;
 	this.W=W;
@@ -16,7 +17,7 @@ function Canv(W, H){
 
 function Positions(x, y){
 	this.x = x;
-	this.y = y;
+	this.y = y; */
 	
 	
 }
@@ -60,8 +61,8 @@ function cutlist(){
 	kerf = document.getElementById("kerf").value/2;
 	var myRect_gr = [];	
 	var myRect_cien = [];
-	var myCan =[];
-	var myPosition = [];
+	//var myCan =[];
+	//var myPosition = [];
 	
 	
 	
@@ -123,7 +124,7 @@ function cutlist(){
 			}
 			
 			while(k < qty_sh);
-		
+		/* 
 		    var p =0;
 			do{
 				carcass_s = [side, bottom, shelf];
@@ -134,7 +135,7 @@ function cutlist(){
 				
 				p++;
 			}
-			while(p < counter);	
+			while(p < counter); */	
 				
 			
 			   
@@ -218,11 +219,6 @@ function cutlist(){
 	
   return false;
 	
-		
-		
-		
-
-
-
-
 }	
+		
+		

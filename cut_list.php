@@ -181,7 +181,7 @@ if (isset ($_SESSION['email'])){
 			 echo"</br><label>Saw kerf: <input type='number' id ='kerf' max= '6' min = '2' required/></label>";
 			 
 			 
-			 echo"</br><input type='submit' value='See elements optimised on your board '/>";
+			 echo"</br><input type='submit' value='See elements optimised on your sheets '/>";
 			 
 			 
 			 echo"</form>";

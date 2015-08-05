@@ -8,5 +8,5 @@
 
 
 <script language="javascript" type="text/javascript" src="scripts/script.js"></script>
-<script language="javascript" type="text/javascript" src="scripts/packer.js"></script>
+
 </head>
