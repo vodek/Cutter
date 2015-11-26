@@ -10,7 +10,6 @@
 	return false; 
 		}
 
-
 else{
 document.getElementById('height_all').innerHTML = "";	
 	

@@ -151,10 +151,11 @@ if (isset ($_SESSION['email'])){
 
 				echo "<tr>";
 
-				$th1=$row2[4];
-				$th2=$row2[12];
+				
 			
 			}
+			$th1=$row2[4];
+				$th2=$row2[12];
 	
 		
 				}

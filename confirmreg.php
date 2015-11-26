@@ -54,7 +54,7 @@ elseif(!$result->num_rows > 0){
 		$_SESSION['email'] = $email;
 		echo "<a>YOUR REGISTRATION IS COMPLETED...</a>";
 		header("Refresh:3; url=index.php");
-		echo'<a>You will be shortly redirected to your hompage</a></br>';
+		echo'<a>You will be shortly redirected to your homepage</a></br>';
 		echo'<a>If does not happen: </a>';
 		echo'<a href ="index.php">Click here</a>';
 		}

@@ -39,9 +39,7 @@ $query1 = "INSERT INTO project(proj_name, proj_date, user_iduser)
 			$idproject = $row1[0];
 			//set session "idproject"
 			$_SESION['idproject'] = $idproject;
-			/*  $query3 = mysql_query("SELECT MAX(idcarcass) FROM carcass");
-			$row2 = mysql_fetch_row($query3);
-			$hcarcass_id = $row2[0]; */
+	
 			
 			//for loop to insert into carcass table as many carcasses as user set in the form
 		 	for ($i = 0; $i < $counter; $i++){
